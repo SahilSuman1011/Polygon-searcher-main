@@ -1,69 +1,170 @@
-# Welcome to your Lovable project
+# Polygon Searcher App
 
-## Project info
+A React application that allows users to enter personal information and interact with a map to create, edit, and delete polygons.
 
-**URL**: https://lovable.dev/projects/b666f4c8-05ed-4b32-b88f-92ecaf8aec31
+## Features
 
-## How can I edit this code?
+- User registration form with validation
+- Two-route navigation system
+- OpenLayers map integration with polygon drawing capabilities
+- Responsive design using Tailwind CSS
+- User data persistence between routes
 
-There are several ways of editing your application.
+## Technologies Used
 
-**Use Lovable**
+- React 18
+- Vite (fast build tool)
+- React Router for navigation
+- OpenLayers for mapping functionality
+- Tailwind CSS for styling
+- Context API for state management
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/b666f4c8-05ed-4b32-b88f-92ecaf8aec31) and start prompting.
+## Prerequisites
 
-Changes made via Lovable will be committed automatically to this repo.
+Before you begin, ensure you have the following installed:
+- Node.js (v16 or higher)
+- npm (v8 or higher)
 
-**Use your preferred IDE**
+## Installation
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+1. Clone this repository
+```bash
+git clone <https://github.com/SahilSuman1011/Polygon-searcher-main>
+cd polygon-searcher-main
+```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+2. Install dependencies
+```bash
+npm install
+```
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Start the development server
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+4. Open your browser to view the application
+```
+http://localhost:8080
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Project Structure
 
-**Use GitHub Codespaces**
+```
+map-polygon-app/
+├── public/
+│   └── favicon.ico
+├── src/
+│   ├── components/
+│   │   ├── ui/
+│   │   │   ├── Header.tsx
+│   │   │   ├── MapView.tsx
+│   │   │   ├── SearchForm.tsx
+│   │   │   └── TransitionContainer.tsx
+│   │   ├── context/
+│   │   │   └── UserContext.tsx
+│   │   ├── hooks/
+│   │   │   ├── use-mobile.tsx
+│   │   │   ├── use-toast.ts
+|   |   |-- lib/
+|   |   |   |-- utils.ts
+│   ├── pages/
+│   │   ├── Index.tsx
+│   │   ├── Map.tsx
+│   │   ├── NotFound.tsx
+│   ├── App.tsx
+│   ├── main.tsx
+│   ├── index.css
+├── .gitignore
+├── index.html
+├── package.json
+├── package-lock.json
+├── postcss.config.js
+├── tailwind.config.ts
+├── tsconfig.json
+├── tsconfig.app.json
+├── tsconfig.node.json
+├── vite.config.ts
+└── README.md
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```
 
-## What technologies are used for this project?
+## Features in Detail
 
-This project is built with .
+### Route 1: Search Form
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- Collects user's first name and mobile number
+- Performs validation:
+  - First name must be provided
+  - Mobile number must be a valid 10-digit number
+- Stores user data in context for access across routes
 
-## How can I deploy this project?
+### Route 2: Map Page
 
-Simply open [Lovable](https://lovable.dev/projects/b666f4c8-05ed-4b32-b88f-92ecaf8aec31) and click on Share -> Publish.
+- Displays user's name in the header
+- Provides a full-screen map with polygon drawing tools
+- Toolbar with multiple interaction modes:
+  - **View**: Navigate around the map and view existing polygons
+  - **Draw**: Create new polygons by clicking points on the map
+  - **Edit**: Modify existing polygons by dragging points
+  - **Delete**: Remove polygons by selecting them
 
-## I want to use a custom domain - is that possible?
+### Data Persistence
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+- User data is stored in React Context
+- Map page is protected and redirects to the search form if user data is missing
+
+## Build for Production
+
+To build the application for production:
+
+```bash
+npm run build
+```
+
+The built files will be available in the `dist` directory.
+
+## Preview Production Build
+
+To preview the production build locally:
+
+```bash
+npm run preview
+```
+
+## Customization
+
+### Tailwind CSS Configuration
+
+The Tailwind configuration can be customized in `tailwind.config.js`. For example, you can modify colors, spacing, and other design tokens:
+
+```javascript
+module.exports = {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        // Add custom colors here
+        primary: '#3b82f6',
+      },
+    },
+  },
+  plugins: [],
+}
+```
+
+### OpenLayers Configuration
+
+The map configuration can be adjusted in the `MapComponent.jsx` file. You can modify:
+
+- Initial map center and zoom level
+- Base map layer (currently using OpenStreetMap)
+- Polygon styling (colors, line width, etc.)
+- Additional map controls and interactions
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
